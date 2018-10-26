@@ -29,15 +29,15 @@ public class ResourcesVerticle extends AbstractVerticle {
         // Create a router object.
         Router router = Router.router(vertx);
 
-        router.route("/v1/schemas*").handler(BodyHandler.create());
-        router.get("/v1/schemas/:id").handler(this::getResourceSchema);
-        router.get("/v1/schemas/cache").handler(this::getCacheSchemas);
-        router.delete("/v1/schemas/cache/:id").handler(this::deleteCacheSchema);
+        router.route("/v1/resources*").handler(BodyHandler.create());
+        router.get("/v1/resources/schemas/:id").handler(this::getResourceSchema);
+        router.get("/v1/resources/schemas/cache").handler(this::getCacheSchemas);
+        router.delete("/v1/resources/schemas/cache/:id").handler(this::deleteCacheSchema);
 
-        router.route("/v1/specs*").handler(BodyHandler.create());
-        router.get("/v1/specs/:id").handler(this::getResourceSpec);
-        router.get("/v1/specs/cache").handler(this::getCacheSpecs);
-        router.delete("/v1/specs/cache/:id").handler(this::deleteCacheSpec);
+        //router.route("/v1/specs*").handler(BodyHandler.create());
+        router.get("/v1/resources/specs/:id").handler(this::getResourceSpec);
+        router.get("/v1/resources/specs/cache").handler(this::getCacheSpecs);
+        router.delete("/v1/resources/specs/cache/:id").handler(this::deleteCacheSpec);
 
         vertx.createHttpServer()
                 .requestHandler(router::accept)
